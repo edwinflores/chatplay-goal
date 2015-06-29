@@ -11,11 +11,13 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', ['as' => 'home', 'uses' => 'ChatplayController@main']);
 
-Route::get('home', 'HomeController@index');
+Route::post('/login', ['as' => 'login', 'uses' => 'ChatplayController@login']);
+Route::get('/logout', ['as' => 'logout', 'uses' => 'ChatplayController@logout']);
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+Route::get('/submit_chat', ['as' => 'submit_chat', 'uses' => 'ChatplayController@submitChat']);
+
+Route::get('/users', ['as' => 'users', 'uses' => 'ChatplayController@getUsers']);
+
+Route::get('/messages', ['as' => 'messages', 'uses' => 'ChatplayController@getChats']);
