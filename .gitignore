@@ -1,0 +1,9 @@
+/vendor
+/node_modules
+.env
+.env.sample
+app/storage
+/.idea
+.idea
+dump.rdb
+.DS_STORE
