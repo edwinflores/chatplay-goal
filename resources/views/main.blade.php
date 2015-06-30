@@ -79,6 +79,8 @@
 <script src="{{ asset('js/jScrollPane/jScrollPane.min.js') }}"></script>
 <script src="{{ asset('js/script.js') }}"
 
+@yield('scripts')
+
 </body>
 
 </html>

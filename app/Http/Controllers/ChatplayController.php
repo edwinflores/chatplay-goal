@@ -2,6 +2,7 @@
 
 use App\Chat;
 use App\ChatLine;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use App\ChatUser;
@@ -70,12 +71,42 @@ class ChatplayController extends Controller {
 
     public function getUsers()
     {
-        
+        if(Session::has('name')) {
+            $user = ChatUser::findByName(Session::get('name'));
+            $user->last_activity = Carbon::now();
+            $user->save();
+        }
+
+        DB::table('webchat_lines')->whereRaw('ts < SUBTIME(NOW(),\'0:5:0\')');
+        DB::table('webchat_users')->whereRaw('last_activity < SUBTIME(NOW(),\'0:0:30\')');
+
+        $users = DB::table('webchat_users')->orderBy('name', 'ASC')->take(18)->get();
+        foreach ($users as $user) {
+            $user->gravatar = Chat::gravatarFromHash($user->gravatar, 30);
+        }
+
+        return [
+            'users' =>  $users,
+            'total' =>  count($users)
+        ];
     }
 
-    public function getChats()
+    public function getChats($lastID)
     {
+        $lastID = (int)$lastID;
 
+        $chats = DB::table('webchat_lines')->where('id', '>', $lastID)->orderBy('id', 'ASC')->get();
+
+        foreach ($chats as $chat) {
+            $chat->time = [
+                'hours'     =>  gmdate('H', strtotime($chat->ts)),
+                'minutes'   =>  gmdate('i', strtotime($chat->ts))
+            ];
+
+            $chat->gravatar = Chat::gravatarFromHash($chat->gravatar);
+        }
+
+        return array('chats' => $chats);
     }
 
 }

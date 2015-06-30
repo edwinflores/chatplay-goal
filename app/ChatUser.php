@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChatUser extends Model {
 
-    private $table = 'webchat_lines';
+    private $table = 'webchat_users';
 
     protected $fillable = [
         'name',
@@ -18,16 +18,23 @@ class ChatUser extends Model {
     public static function create($data)
     {
         $params = [
-            'author'        => $data['name'],
+            'name'        => $data['name'],
             'gravatar'      => $data['gravatar'],
             'last_activity' => Carbon::today(),
             'created_at'    => Carbon::today(),
             'updated_at'    => Carbon::today()
         ];
 
-        $app = new ChatLine($params);
-        $app->save();
+        $user = new ChatLine($params);
+        $user->save();
 
-        return $app;
+        return $user;
+    }
+
+    public static function findByName($name)
+    {
+        $user = DB::table('webchat_users')->where('name', $name)->first();
+
+        return $user;
     }
 }

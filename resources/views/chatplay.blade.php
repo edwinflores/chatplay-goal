@@ -25,3 +25,66 @@
         </div>
     </div>
 @stop
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            chat.init();
+        });
+
+        var chat = {
+            // data contains the variables for use in the class
+            data: {
+                lastID      :   0,
+                noActivity  :   0
+            },
+
+            // Init binds event listeners and sets up timers
+            init: function() {
+                // Using the defaultText jQuery plugin
+                $('#name').defaultText('Nickname');
+                $('#email').defaultText('Email (Gravatars are Enabled)');
+
+                // Converting the #chatLineHolder dive into a jScrollPane and saving the plugin's API in chat.data
+                chat.data.jspAPI = $('#chatLineHolder').jScrollPane({
+                    verticalDragMinHeight:  12,
+                    verticalDragMaxHeight:  12
+                }).data('jsp');
+
+                var working = false;
+
+                $('#loginForm').submit(function() {
+                    if(working) return false;
+                    working = true;
+
+                    $.tzPOST({{ route('login') }}, $(this).serialize(), function(r) {
+                        working = false;
+
+                        if(r.error) {
+                            chat.displayError(r.error);
+                        }
+                        else chat.login(r.name, r.gravatar);
+                    });
+
+                    return false;
+                });
+
+                $('#submitForm').submit(function(){
+                    var text = $('#chatText').val();
+
+                    if(text.length == 0){
+                        return false;
+                    }
+
+                    if(working) return false;
+                    working = true;
+
+                    var tempID = 't'+Math.round(Math.random()*1000000),
+                            params = {
+
+                            };
+                });
+            }
+        }
+    </script>
+@stop
