@@ -3,10 +3,10 @@
 /* Database Configuration. Add your details below */
 
 $dbOptions = array(
-	'db_host' => 'localhost',
-	'db_user' => 'root',
-	'db_pass' => 'gore_magala',
-	'db_name' => 'chatplay'
+	'db_host' => 'us-cdbr-iron-east-02.cleardb.net',
+	'db_user' => 'be9bcc7602149e',
+	'db_pass' => '6afca1f4',
+	'db_name' => 'heroku_64c26a1d0ff69a3'
 );
 
 /* Database Config End */
