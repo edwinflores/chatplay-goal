@@ -1,18 +1,20 @@
 /* Main chat container */
 
 #chatContainer{
-	width:40%;
+	width:510px;
 	margin:100px auto;
 	position:relative;
 }
 
+
 /* Top Bar */
 
+
 #chatTopBar{
-	height:30px;
+	height:40px;
 	background:url('../img/solid_gray.jpg') repeat-x #d0d0d0;
 	border:1px solid #fff;
-	margin-bottom:5px;
+	margin-bottom:15px;
 	position:relative;
 	
 	color:#777;
@@ -36,9 +38,9 @@
 
 
 #chatLineHolder{
-	height:310px;
-	width:300px;
-	margin-bottom:15px;
+	height:360px;
+	width:350px;
+	margin-bottom:20px;
 }
 
 .chat{
@@ -102,9 +104,8 @@
 #chatUsers{
 	background-color:#202020;
 	border:1px solid #111111;
-	height:300px;
+	height:360px;
 	position:absolute;
-    margin-top: -10px;
 	right:0;
 	top:56px;
 	width:150px;
@@ -232,7 +233,7 @@ a.logoutButton:hover{
 	color:#516D7F !important;
 	display:inline-block;
 	font-size:13px;
-	height:35px;
+	height:29px;
 	text-align:center;
 	text-shadow:1px 1px 0 rgba(255, 255, 255, 0.4);
 	width:75px;
