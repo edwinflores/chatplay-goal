@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ChatPlay</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="css/grayscale.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="js/jScrollPane/jScrollPane.css" />
+<link rel="stylesheet" type="text/css" href="css/page.css" />
+<link rel="stylesheet" type="text/css" href="css/chat.css" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<div class="intro">
+    <div style="position:absolute;left:0px;margin-left: 10%;margin-top: 5%;">
+        <div id="diamond">
+            <iframe id="diamond_frame" src="http://code.9leap.net/codes/embedded/92961" width="330" height="330" frameborder="0" seamless></iframe>
+        </div>
+        <div id="shooter">
+            <iframe id="shooter_frame" src="http://code.9leap.net/codes/embedded/95671" width="330" height="330" frameborder="0"></iframe>
+        </div>
+
+        <div class="fancybtn_body">
+            <button id="btn_switch" class="fancybtn_button" style="margin-right: 20px">Switch</button>
+            <button id="btn_reset"class="fancybtn_button" style="margin-left: 20px; background: #e50000; box-shadow: 0 5px 0 #b20000;">Reset</button>
+        </div>
+    </div>
+
+    <div id="chatContainer" style="position:absolute;bottom:0px;right:0px;margin-bottom: 0px;">
+
+        <div id="chatTopBar" class="rounded"></div>
+        <div id="chatLineHolder"></div>
+        
+        <div id="chatUsers" class="rounded"></div>
+        <div id="chatBottomBar" class="rounded">
+        	<div class="tip"></div>
+            
+            <form id="loginForm" method="post" action="">
+                <input id="name" name="name" class="rounded" maxlength="16" />
+                <input id="email" name="email" class="rounded" />
+                <input type="submit" class="blueButton" value="Login" />
+            </form>
+            
+            <form id="submitForm" method="post" action="">
+                <input id="chatText" name="chatText" class="rounded" maxlength="255" />
+                <input type="submit" class="blueButton" value="Submit" />
+            </form>
+            
+        </div>
+        
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="js/jquery.easing.min.js"></script>
+
+<!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="js/grayscale.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="js/jScrollPane/jquery.mousewheel.js"></script>
+<script src="js/jScrollPane/jScrollPane.min.js"></script>
+<script src="js/script.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#diamond').show("fast");
+        $('#shooter').hide("fast");
+    });
+
+    $("#btn_switch").click(function(){
+        $('#diamond').toggle("slow");
+        $('#shooter').toggle("slow");
+    });
+
+    $("#btn_reset").click(function(){
+        $( '#diamond_frame' ).attr( 'src', function ( i, val ) { return val; });
+        $( '#shooter_frame' ).attr( 'src', function ( i, val ) { return val; });
+    });
+
+</script>
+
+</body>
+</html>
